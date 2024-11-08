@@ -1,0 +1,951 @@
+/* main.css - Mobile First Layout */
+
+/*------------------------------------------------------------------------------------------------------------------------------------------
+ General Reset for the whole page
+ ------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* 
+   Applying box-sizing: border-box to all elements and pseudo-elements
+   ensures that padding and borders are included within the element's width 
+   and height, avoiding issues where elements are larger than intended.
+   This reset also removes default margins and padding to ensure we have 
+   consistent control over spacing across browsers.
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* --- Global Body Styles --- */
+/* setting default fonts and layout / styles existing in all approach */
+body {
+    font-family: 'Karla', sans-serif;
+    background-color: #f3f0e9;
+    color: #000;
+    line-height: 1.6;
+}
+/* --- Heading and Paragraph Styles --- */
+h1 {
+    font-size: 2.027rem;
+    font-family: 'Lato',sans-serif;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 1.802rem;
+    font-family: 'Lato',sans-serif;
+    text-transform: uppercase;
+}
+
+h3 {
+    font-size: 1.424rem;
+    font-family: 'Lato',sans-serif;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 1rem;
+}
+
+button {
+    font-family: 'Karla',sans-serif;
+    text-transform: uppercase;
+}
+
+/* Wrapper for centering and padding content */
+.wrapper {
+    max-width: 100%;
+}
+
+/* --- Skip Link (Accessibility) ---  hit tab until you see the skip-link pop out */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 0.5rem;
+    z-index: 100;
+    text-decoration: none;
+    transition: top 0.3s;
+}
+
+/* it is in the very top left corner  */
+.skip-link:focus {
+    top: 0; /* Reveal the link when focused  */
+}
+
+/* --- Header --- */
+header {
+    /* max-height: 1200px; */
+    background-color: #000000;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+/* Logo Styling */
+header .logo {
+    text-align: center;
+    height: 35px;
+    margin: 0;
+}
+
+/*normal  Navigation Styling */
+nav ul {
+    text-transform: uppercase;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+/* Styling for navigation links with 'Lato' font-family, no underline, 
+   and bold white text for visibility on darker backgrounds. Font size 
+   is set to 1rem for readability, and a color transition effect 
+   (0.3s duration) for smooth color change on hover or focus events.
+   On hover or focus, the link color changes to a golden shade (#d69e3d)
+   to enhance interactivity and visual feedback for users. */
+nav a {
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+nav a:hover,
+nav a:focus {
+    color: #d69e3d;
+}
+
+
+
+/* introduction wrapper and banner css */
+/* The intro-wrapper section provides a visually engaging banner with a background
+   image. This image is styled to cover the entire div, staying centered and slightly 
+   offset vertically (45% from the top) to maintain visual focus. A fixed height 
+   (500px) ensures consistent size, while padding (4rem top and bottom, 20px sides) 
+   offers spacing for content. Center-aligned white text is positioned relatively 
+   to stay above the dark overlay effect (defined in the .overlay0 class) for 
+   better readability. Overflow is hidden to prevent visual bleed of child elements. */
+.intro-wrapper {
+    background-image: url('../images/hero-background.jpg');
+    background-size: cover;
+    background-position: center 45%; /*center and 44% from top*/
+    height: 500px;
+    padding: 4rem 20px;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* light dark overlay over the bg image */
+/* Adds a semi-transparent dark overlay across the intro-wrapper’s background 
+   image to enhance text visibility. The overlay spans the entire div using absolute 
+   positioning (top, left, right, bottom set to 0), with a z-index of 1 to sit below 
+   the content but above the background image. The background-color includes an alpha 
+   value (.6) for 60% opacity. */
+.overlay0 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .6); /*transparency*/
+    z-index: 1;
+}
+
+/* to not be pressed by the overlay */
+/* The intro section, holding introductory text and elements, is positioned 
+   above the overlay using a high z-index of 100. Padding (1rem sides) adds space 
+   without overflowing. It has a margin-top (4rem) to balance its visual layout within 
+   the intro-wrapper. */
+.intro {
+    /* max-width: 1200px; */
+    position: relative;
+    z-index: 100;
+    padding: 0 1rem;
+    margin-top: 4rem;
+}
+
+/* animation  */ /* Keyframes to animate the fade-in and upward movement of text content.
+   The initial opacity is 0 with a 20px downward offset; at 100% completion, 
+   the opacity is fully visible, and the text has shifted to its original 
+   position (translateY(0)). */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Heading within the intro section is styled for a bold and uppercase appearance. 
+   Line height (1.2) keeps text compact, while the font-weight (800) increases 
+   visual emphasis. The fadeInUp animation makes it gradually appear with a delay 
+   of 0.5s, creating a staggered effect when combined with the other animated elements. */
+.intro h1 {
+    /* margin-top: 4rem; */
+    text-transform: uppercase;
+    line-height: 1.2;
+    font-weight: 800;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.5s; /* Delay for staggered effect */
+}
+
+/* Styling for Paragraph in Intro Section */
+/* Intro paragraph text is styled with medium weight (500) for readability and a 
+   line height of 1.2 to make it more legible. It also uses the fadeInUp animation 
+   with a delay of 0.5s, for consistency with the heading animation. Padding (10px 
+   top, 20px bottom, 30px right, 20px left) provides spacing around the text. */
+.intro p {
+    font-weight: 500;
+    padding: 10px 30px 20px 20px;
+    line-height: 1.2;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.5s; /* Delay for staggered effect */
+}
+
+/* Styling for Button in Intro Section */
+/* Intro button styled for high contrast, with white background and black text 
+   for easy readability. Font-weight (800) and size (1rem) make it bold and prominent. 
+   The button has rounded padding (0.75rem top/bottom, 2rem sides) and a transition 
+   on background color for smooth hover effect. The fadeInUp animation matches the 
+   delay of the other elements for a synchronized appearance. */
+.intro button {
+    margin-top: 1rem;
+    background-color: white;
+    color: #000000;
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 0.5s; /* Delay for staggered effect */
+}
+
+.intro button:hover,
+.intro button:focus {
+    background-color: #d69e3d;
+}
+
+/* --- Welcome Section --- */
+/* Welcome section with top margin (2.5rem) and side padding (2rem top/bottom, 10px 
+   sides) for visual spacing. Text-align is left for a formal appearance. */
+.welcome {
+    /* max-width: 1200px; */
+    margin-top: 2.5rem ;
+    padding: 2rem 10px;
+    text-align: left;
+}
+
+/* Uppercase, bold, and colored text for visual emphasis in introductory 
+   welcome paragraph, setting it apart from surrounding text. */
+.welcome p {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #d69e3d;
+    padding-bottom: 5px;
+}
+
+/* Headings in the welcome section have bold weight (600) and reduced line-height (1.2) 
+   for a compact appearance. Margin adjustments create space from adjacent elements. */
+.welcome h2 {
+    margin-bottom: 2rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-right: 6rem;
+}
+
+/* Image grid in Welcome section with 2-column layout */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.image-grid img {
+    width: 100%;
+}
+
+/* using grid column span to make the first image of the grid cover 2 columns of space */
+.image-grid img:nth-child(1)
+{
+    grid-column: span 2;
+}
+
+/* Grid layout for the 'What We Offer' section */
+.what-we-offer {
+    /* max-width: 1200px; */
+    padding: 2rem 1rem;
+    text-align: center;
+}
+
+#what-we-offer-paragraph {
+    color: #d69e3d;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.what-we-offer h2 {
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+/* Features section using single-column layout */
+.features {
+    display: grid;
+    grid-template-columns: 1fr; /* Single-column layout */
+    gap: 2rem;
+}
+
+.feature p {
+    padding: 0 30px 30px 30px ;
+    line-height: 1.2;
+}
+
+.feature img {
+    height: 150px;
+    /* margin-bottom: 1rem; */
+}
+
+.feature h3 {
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+/* ---------------- Menu Section ----------- */
+.menu-locations-wrapper {
+    background-image: url('../images/coffee-shop.jpeg'); 
+    background-size: cover; 
+    background-position: center;
+    height: 700px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* light dark overlay over the bg image */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .6); /*transparency*/
+    z-index: 1;
+}
+
+.menu, .locations{
+    position: relative;
+    margin-top: 5rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: .7rem 2.5rem;
+    color: #ffffff;
+    z-index: 100;
+}
+
+.menu p , .locations p {
+    color: #d69e3d;
+    font-weight: bold;
+}
+
+.menu h2, .locations h2 {
+    font-weight: 600;
+    padding: 10px 0;
+    line-height: 1.2;
+
+}     
+
+.menu button, .locations button{
+    font-size: 1.2rem;
+    border: none;
+    font-weight:800;
+    padding: 10px 30px;
+    margin-top: 3rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu button:hover,
+.menu button:focus {
+background-color: #d69e3d;
+}
+
+.locations button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: #ffffff;
+}
+
+.locations button:hover,
+.location button:focus {
+    background-color: #d69e3d; /* Change background to golden on hover */
+    color: black; /*Change text to black on hover*/
+}
+
+
+/* --- About Us Section --- */
+.about {
+    /* min-width: 1200px; */
+    padding: 2rem 1rem;
+    text-align: left;
+    
+}
+
+.about-content p:nth-child(1){
+    color: #d69e3d;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 5px 0;
+}
+
+.about h2 {
+    font-weight:600;
+}
+
+.first-paragraph , .second-paragraph {
+    line-height: 1.2;
+    font-weight:400;
+}
+
+.first-paragraph {
+    padding-bottom: 10px;
+}
+
+
+.about img {
+    margin-top: 4rem;
+    width: 100%;
+}
+
+.about-content button {
+    background-color: #000000;
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 4rem;
+    font-weight: 800;
+    padding: 10px 20px;   
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.about-content button:hover,
+.about-content button:focus {
+background-color: #d69e3d;
+}
+
+/* --- Testimonials Section --- */
+.testimonials {
+    /* min-width: 1200px; */
+    padding: 2rem 1rem;
+    background-color: #000000;
+    text-align: left;
+    color: white;
+    /* margin-bottom: 3rem; */
+}
+
+
+.testimonial-para {
+    text-transform: uppercase;
+    color: #d69e3d;
+    font-weight:400;
+    padding: 3rem 0 10px 0;
+}
+
+#testimonials-heading {
+    padding-right: 2rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+/* Testimonial grid layout for single-column layout */
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: 1fr; /*Single-column layout*/
+    gap: .7rem;
+}
+
+/* Testimonial item positioning and styling */
+.testimonial {
+    overflow: hidden;
+    position: relative;
+
+}
+
+/* light dark overlay over the bg image */
+.overlay2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .3); /*transparency*/
+    z-index : 1;
+}
+
+.testimonial img {
+    width: 100%;
+    height:  500px;
+    object-fit: cover;
+    object-position: center ; /* Ensures the middle part of the image is shown */
+}
+
+.testimonial:nth-child(2) img,
+.testimonial:nth-child(3) img {
+    object-position: center 2rem; /*position center and top : 2rem */
+}
+
+/* Blockquote Styling - positioned over image */
+.testimonial blockquote {
+    z-index: 2;
+    line-height: 1.2;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    color: #ffffff;
+    padding: 15px;
+}
+
+/* Cite styling within blockquote */
+blockquote cite {
+    padding-top: 10px;
+    display: block;
+    /* margin-top: 10px; */
+    font-size: 1.2rem;
+    color: #d69e3d; /* Gold color for name and location */
+    text-transform: uppercase;
+    font-style: normal ;
+    font-weight: bold;
+}
+
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 3rem 10px;
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* horizontal line above the footer text */
+.footer-line {
+    /* width: 99%; */
+    margin: 0 auto 1rem auto;
+    border: none;
+    border-top: 1px solid #898181;
+}
+
+/* ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                                MEDIA QUERIES                                                                                                       
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* ---------------------------------------------------------------------------------------------------
+                                            TABLET
+------------------------------------------------------------------------------------------------------*/
+
+@media screen and (min-width: 768px) and (max-width: 1099px) {
+    /* Adjust font sizes for headings and paragraphs for tablet view */
+    h1 {
+        font-size: 2.986rem;
+    }
+
+    h2 {
+        font-size: 2.488rem;
+    }
+
+    h3 {
+        font-size: 1.728rem;
+    }
+
+    p {
+        font-size: 1rem;
+    } 
+
+    /* header section */
+    /* Center the navigation bar content with a max-width */
+
+    nav {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* intro section  */
+    .intro-wrapper {
+        height:  700px;/* Set a fixed height for intro wrapper */
+        /* max-width: 1200px; */
+    }
+    
+    
+    .intro {
+        max-width: 1200px;  /* Center intro section content */
+        margin: 0 auto;
+        padding: 10rem 0;  /* Add vertical padding */
+    }
+
+    .intro h1 {
+        padding: 0 1rem ; /* Add padding to the h1 inside intro */
+    }
+
+    .intro p {
+        padding: 20px 5.5rem;  /* Add padding to the paragraph for readability */
+    }
+
+    .intro button {
+        padding: 1rem 3rem;  /* Increase button size for better usability on tablet */
+        font-size: 1.2rem;
+    }
+
+
+    /* welcome section */
+    .welcome {
+        max-width: 1200px; /* Center content */
+        margin: 0 auto;
+    }
+
+    .welcome p {
+        margin-top: 4rem; /* Add top margin for spacing */
+    }
+
+    .welcome h2 {
+        padding-right: 23%;
+        margin-bottom: 0;
+    }
+
+    /* Image grid layout adjustments for tablet */
+    .image-grid {
+        grid-template-columns: repeat(4, 1fr); /* 2 columns for mobile */
+    }
+    
+    .image-grid img {
+        width: 100%;
+    }
+    
+    /* using grid column span to make the first image of the grid cover 2 columns of space */
+    .image-grid img:nth-child(1)
+    {
+        grid-row: span 2;
+    }
+
+
+    /* what-we-offer section */
+     .what-we-offer {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .features {
+        grid-template-columns: repeat(4,1fr);
+    }
+
+    .feature:nth-child(1),
+    .feature:nth-child(2) {
+    grid-column: span 2;
+    }
+
+    .feature:last-child {
+        grid-column: 2 / 4;
+    }
+
+    .features h3 {
+        font-weight: 600;
+    }
+
+    .features p {
+        padding: 5px;
+        margin-bottom: 3rem;
+    }
+
+    /* menu and locations */
+    .menu-locations-wrapper {
+        height: 400px;
+        display: flex;
+    }
+
+    .menu h2, .locations h2 {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+
+    .menu-locations-wrapper button {
+        margin-top: 1.5rem;
+    }
+
+    /* about section */
+
+    #about {
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-bottom: 4rem;
+    }
+    .about-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }   
+
+    .about-img {
+        max-width: 100%;
+    }
+
+    .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .about-content {
+        padding-left: 1rem;
+        margin-top: 4.5rem;
+        line-height: 1.2;
+
+    }
+
+
+    /* testimonial section  */
+
+    .testi-bg {
+        background-color: #000000;
+    }
+    .testimonials {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    #testimonials-heading {
+        margin-right: 22%;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: repeat(3,1fr);
+    }
+
+
+    .testimonial:nth-child(2) img,
+    .testimonial:nth-child(3) img {
+        object-position: center; /*position center so that the images are levelled equally*/
+    }
+
+    .footer-section {
+        padding: 0 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+}
+
+
+
+/* ----------------------------------------------------------------------------------------------------------
+                                            Desktop
+---------------------------------------------------------------------------------------------------------------*/
+
+@media screen and (min-width: 1100px) {
+    .wrapper {
+        /* max-width: 1200px; */
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 3.815rem;
+    }
+
+    h2 {
+        font-size: 3.052rem;
+    }
+
+    h3 {
+        font-size: 1.953rem;
+    }
+
+    p {
+        font-size: 1rem;;
+    }
+
+    /* header section */
+
+    header {
+        padding: .5rem 10%;
+        /* background-color: #000000; */
+    }
+
+    nav {
+        max-width: 1200px;  
+        display: flex;
+        justify-content: space-between; /* Space between items */
+        align-items: center; 
+        
+    }
+
+    nav ul { 
+        margin-top: 0; /*to make the nav links align with the logo */
+    }
+
+
+    /* introduction section */
+    .intro-wrapper {
+        height:  700px;
+    }
+
+    .intro {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 10rem 0;
+    }
+
+    .intro h1 {
+        padding: 0 20% ;
+    }
+
+    .intro p {
+        padding: 20px 25%;
+    }
+
+    .intro button {
+        padding: 1rem 3rem;
+        font-size: 1.2rem;
+    }
+
+
+
+/* welcome section */
+    .welcome {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .welcome p {
+        margin-top: 4rem;
+    }
+
+    .welcome h2 {
+        padding-right: 40%;
+        margin-bottom: 0;
+    }
+
+    .image-grid {
+        grid-template-columns: repeat(4, 1fr); /* 2 columns for mobile */
+    }
+    
+    .image-grid img {
+        width: 100%;
+    }
+    
+    /* using grid column span to make the first image of the grid cover 2 columns of space */
+    .image-grid img:nth-child(1)
+    {
+        grid-row: span 2;
+    }
+
+    /* what we offer section */
+    .what-we-offer {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .features {
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    .features h3 {
+        font-weight: 600;
+    }
+
+    .features p {
+        padding: 5px;
+        margin-bottom: 3rem;
+    }
+
+    /* menu and locations */
+    .menu-locations-wrapper {
+        height: 400px;
+        display: flex;
+    }
+
+    .menu h2, .locations h2 {
+        padding: 0 10%;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+
+    .menu-locations-wrapper button {
+        margin-top: 1.5rem;
+    }
+
+    /* about section */
+    #about {
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-bottom: 3rem;
+    }
+
+    .about-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .about-image {
+        padding-right: 1rem;
+    }
+
+    .about-content {
+        margin-top: 13rem;
+        line-height: 1.5;
+    }
+
+    .about-content button {
+        margin-top: 3rem;
+    }
+
+    /* testimonial section  */
+
+    .testi-bg {
+        background-color: #000000;
+    }
+
+    .testimonials {
+        max-width: 1200px;
+        margin: 0 auto;
+        
+    }
+
+    .testimonial:nth-child(2) img,
+    .testimonial:nth-child(3) img {
+        object-position: center; /*position center so that the images are levelled equally*/
+    }
+
+
+    #testimonials-heading {
+        margin-right: 42%;
+    }
+
+    .testimonial-grid {
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    /* footer section */
+    .footer-section {
+        padding: 0 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
